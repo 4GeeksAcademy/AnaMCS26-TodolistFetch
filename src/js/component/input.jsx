@@ -85,7 +85,7 @@ const Input = () => {
             <div className='d-flex justify-content-end me-5'>
                 <button type="button" onClick={deleteAll} className="btn btn-outline-dark deleteall">Delete All</button>
             </div>
-            <h1 className='pt-5'>TODO LIST</h1>
+            <h1 className='pt-5'>My to do list</h1>
             <div className='container' id='container-lista'>
                 <div className='' id='container-input'>
                     <input className="mt-4" type="text" onKeyDown={enter} placeholder='Algo para anotar?' />
