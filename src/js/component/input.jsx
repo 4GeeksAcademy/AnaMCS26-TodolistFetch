@@ -61,11 +61,30 @@ const Input = () => {
     }, [listItem]);
 
     const deleteItem = (deletedItem) => {
-        const newList = listItem.filter((el) => el.label !== deletedItem.label);
+        const newList = listItem.filter((el) => el.id !== deletedItem.id);
         setListItem(newList);
     };
 
+    
     const deleteAll = () => {
+        setListItem([]);
+    };
+
+    const deleteAllItems = async () => {
+        try {
+            const requestOptions = {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+            };
+            await fetch("https://playground.4geeks.com/apis/fake/todos/user/AnaMCS26", requestOptions);
+            setListItem([]);
+            alert('Di adiós a todo');
+        } catch (error) {
+            console.error("Error eliminando tareas: ", error);
+        }
+    };
+
+    const deleteTasks = () => {
         setListItem([]);
     };
 
@@ -83,7 +102,8 @@ const Input = () => {
     return (
         <div className='mt-5'>
             <div className='d-flex justify-content-end me-5'>
-                <button type="button" onClick={deleteAll} className="btn btn-outline-dark deleteall">Delete All</button>
+                <button type="button" onClick={deleteTasks} className="btn btn-outline-primary deleteall">Delete Tasks</button>
+                <button type="button" onClick={deleteAllItems} className="btn btn btn-danger deleteall">Delete All</button>
             </div>
             <h1 className='pt-5'>My to do list</h1>
             <div className='container' id='container-lista'>
