@@ -60,12 +60,11 @@ const Input = () => {
         updateTasks();
     }, [listItem]);
 
-    const deleteItem = (deletedItem) => {
-        const newList = listItem.filter((el) => el.id !== deletedItem.id);
-        setListItem(newList);
+    const deleteItem = (deletedItemId) => {
+        const updatedList = listItem.filter((item) => item.id !== deletedItemId);
+        setListItem(updatedList);
     };
 
-    
     const deleteAll = () => {
         setListItem([]);
     };
@@ -92,9 +91,7 @@ const Input = () => {
         <div id="item" key={index}>
             <li className='d-flex justify-content-between'>
                 <p className='mt-4 ms-4'>{el.label}</p>
-                <a className='mt-3 pt-2' href='#' role='button' onClick={() => deleteItem(el)}>
-                    <i id='poke' className="fa-solid fa-delete-left"></i>
-                </a>
+                <button onClick={() => deleteItem(el.id)}>Eliminar</button>
             </li>
         </div>
     ));
@@ -102,7 +99,6 @@ const Input = () => {
     return (
         <div className='mt-5'>
             <div className='d-flex justify-content-end me-5'>
-                <button type="button" onClick={deleteTasks} className="btn btn-outline-primary deleteall">Delete Tasks</button>
                 <button type="button" onClick={deleteAllItems} className="btn btn btn-danger deleteall">Delete All</button>
             </div>
             <h1 className='pt-5'>My to do list</h1>
